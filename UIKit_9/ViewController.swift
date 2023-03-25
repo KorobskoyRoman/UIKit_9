@@ -48,8 +48,9 @@ private extension ViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         navigationItem.title = "Collection"
-        collectionView.frame = .init(x: 0, y: view.center.y / 2,
-                                     width: view.frame.width, height: 400)
+//        collectionView.frame = .init(x: 0, y: view.center.y / 2,
+//                                     width: view.frame.width, height: 400)
+        collectionView.frame = view.bounds
         view.addSubview(collectionView)
     }
 }
@@ -82,8 +83,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let widthSize: CGFloat = collectionView.frame.width / 1.3
-        let heightSize: CGFloat = collectionView.frame.height
+        let widthSize: CGFloat = view.frame.width - 50
+        let heightSize: CGFloat = collectionView.frame.height / 2
         return CGSize(width: widthSize, height: heightSize)
     }
 
@@ -92,7 +93,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         withVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     ) {
-        let itemWidth: CGFloat = collectionView.frame.width / 1.3
+        let itemWidth: CGFloat = view.frame.width - 50
 
         let cellWidth = itemWidth + 20 // 20 = layout.minimumLineSpacing
         let targetXContentOffset = targetContentOffset.pointee.x / cellWidth
